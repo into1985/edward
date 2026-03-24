@@ -199,7 +199,7 @@ ul, ol { list-style: none; }
   color: var(--terracotta);
   line-height: 0;
 }
-.nav-hamburger svg { display: block; stroke-width: 1.5px; }
+.nav-hamburger svg { display: block; stroke-width: 1px; }
 .nav-hamburger .icon-close { display: none; }
 .nav-hamburger.active .icon-menu { display: none; }
 .nav-hamburger.active .icon-close { display: block; }
@@ -230,7 +230,7 @@ ul, ol { list-style: none; }
 }
 .mobile-menu a {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 7.5vw, 5rem);
+  font-size: clamp(1.8rem, 5.625vw, 3.75rem);
   font-weight: 300;
   color: var(--text-primary);
   line-height: 1.2;
@@ -1957,6 +1957,9 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 
   .services-layout { grid-template-columns: 1fr; }
   .service-featured { margin-left: 0; margin-top: 2rem; }
+  .service-row:hover { padding-left: 0; }
+  .info-card:hover { padding-left: 0; }
+  .service-n { display: none; }
 
   .about-inner { grid-template-columns: 1fr; }
   .about-right { display: none; }
@@ -2280,6 +2283,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
     justify-content: flex-start;
     gap: 1rem;
     padding-right: 0 !important;
+    font-size: 0.85rem;
   }
 
   /* — Gallery Strip Optimization — */
@@ -2427,7 +2431,14 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   }
   .footer-nav {
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
+  }
+  .footer {
+    padding-top: 3rem;
+  }
+  .gallery-page-hero {
+    padding: 8rem var(--gutter) 3rem;
   }
   .footer-nav a,
   .footer-socials a {
