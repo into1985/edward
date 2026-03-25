@@ -37,11 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const progress = document.querySelector('.scroll-progress');
   const nav      = document.querySelector('.nav');
 
-  window.addEventListener('scroll', () => {
+  const onScroll = () => {
     const total = document.documentElement.scrollHeight - window.innerHeight;
     if (progress) progress.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   /* ===== MOBILE MENU ===== */
   const hamburger  = document.querySelector('.nav-hamburger');
@@ -239,6 +241,22 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
     });
   });
+
+  const aboutBadge = document.querySelector('.about-badge');
+  if (aboutBadge) {
+    aboutBadge.addEventListener('mousemove', e => {
+      const r = aboutBadge.getBoundingClientRect();
+      gsap.to(aboutBadge, {
+        x: (e.clientX - r.left - r.width  / 2) * 0.28,
+        y: (e.clientY - r.top  - r.height / 2) * 0.28,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    });
+    aboutBadge.addEventListener('mouseleave', () => {
+      gsap.to(aboutBadge, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+    });
+  }
 
   const footerLogo = document.querySelector('.footer-logo');
   if (footerLogo) {

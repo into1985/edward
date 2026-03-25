@@ -124,6 +124,9 @@ ul, ol { list-style: none; }
   opacity: 1;
   border-color: var(--border);
 }
+.nav:has(.nav-hamburger.active) .nav-bg {
+  opacity: 0;
+}
 .nav-logo {
   display: flex;
   align-items: center;
@@ -230,7 +233,7 @@ ul, ol { list-style: none; }
 }
 .mobile-menu a {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 5.625vw, 3.75rem);
+  font-size: clamp(1.5rem, 5.625vw, 3.75rem);
   font-weight: 300;
   color: var(--text-primary);
   line-height: 1.2;
@@ -242,7 +245,6 @@ ul, ol { list-style: none; }
 .mobile-menu-bottom {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--border);
   display: flex;
   justify-content: center;
 }
@@ -427,7 +429,7 @@ ul, ol { list-style: none; }
 }
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(3.8rem, 7.5vw, 9rem);
+  font-size: clamp(3.8rem, 7.5vw, 8rem);
   font-weight: 300;
   line-height: 0.93;
   letter-spacing: -0.025em;
@@ -807,14 +809,17 @@ ul, ol { list-style: none; }
   justify-content: center;
   text-align: center;
   gap: 0.2rem;
+  box-shadow: 0 12px 48px rgba(196, 133, 106, 0.18);
+  will-change: transform;
 }
 .about-badge-n {
   font-family: var(--font-display);
   font-size: 1.7rem;
   font-weight: 300;
-  color: var(--terracotta);
+  color: var(--text-primary);
   line-height: 1;
 }
+.about-badge-amp { color: var(--terracotta); }
 
 /* ===== TEAM TEASER ===== */
 .team-teaser {
@@ -922,6 +927,9 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   text-align: center;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .quote-section::before {
   content: '\201C';
@@ -1105,6 +1113,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 
 /* — Suur editorial CTA ülaosas — */
 .footer-cta-row {
+  padding-top: 3rem;
   padding-bottom: 3rem;
   margin-bottom: 3.5rem;
   border-bottom: 1px solid rgba(253,250,246,0.08);
@@ -1117,7 +1126,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 }
 .footer-cta-text {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 7vw, 7.5rem);
+  font-size: 7.5rem;
   font-weight: 300;
   color: var(--warm-white);
   line-height: 1;
@@ -1925,13 +1934,14 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 
 @media (max-width: 640px) {
   .gallery-page-hero-grid { grid-template-columns: 1fr; }
-  .gallery-curated { grid-template-columns: 1fr 1fr; column-gap: 0.4rem; }
+  .gallery-curated { grid-template-columns: 1fr 1fr; column-gap: 0.5rem; row-gap: 0; }
+  .gc-item .gc-photo { aspect-ratio: 2/3; }
   .gc-item:nth-child(1) { grid-column: 1 / 2; margin-top: 0; }
-  .gc-item:nth-child(2) { grid-column: 2 / 3; margin-top: clamp(2rem, 8vw, 3rem); }
-  .gc-item:nth-child(3) { grid-column: 1 / 2; margin-top: 0; }
-  .gc-item:nth-child(4) { grid-column: 2 / 3; margin-top: clamp(-3rem, -8vw, -2rem); }
-  .gc-item:nth-child(5) { grid-column: 1 / 2; margin-top: 0; }
-  .gc-item:nth-child(6) { grid-column: 2 / 3; margin-top: clamp(2rem, 6vw, 2.5rem); }
+  .gc-item:nth-child(2) { grid-column: 2 / 3; margin-top: 3.5rem; }
+  .gc-item:nth-child(3) { grid-column: 1 / 2; margin-top: 2rem; }
+  .gc-item:nth-child(4) { grid-column: 2 / 3; margin-top: 5.5rem; }
+  .gc-item:nth-child(5) { grid-column: 1 / 2; margin-top: 2rem; }
+  .gc-item:nth-child(6) { grid-column: 2 / 3; margin-top: 5.5rem; }
 }
 
 @media (max-width: 1100px) {
@@ -1944,7 +1954,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   .nav-links, .nav-cta.d-only { display: none; }
   .nav-hamburger { display: flex; }
 
-  .hero-inner { grid-template-columns: 1fr; }
+  .hero-inner { grid-template-columns: 1fr; padding-top: 6rem; }
   .hero-right {
     position: absolute;
     right: 0; top: 5rem;
@@ -1959,7 +1969,15 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   .service-featured { margin-left: 0; margin-top: 2rem; }
   .service-row:hover { padding-left: 0; }
   .info-card:hover { padding-left: 0; }
+  .info-card-icon svg { width: 36px; height: 36px; }
   .service-n { display: none; }
+  .service-row { grid-template-columns: 1fr auto; }
+  .services-tbl td:first-child { padding-left: 1rem; position: relative; }
+  .services-tbl td:first-child::before { left: 0; top: 2.4rem; transform: none; }
+  .services-tbl tr:hover { background-size: 0% !important; }
+  .services-tbl tr:hover td:first-child { padding-left: 1rem !important; }
+  .services-tbl tr:hover td:first-child::before { transform: none; }
+  .services-tbl td:last-child { padding-right: 1rem; }
 
   .about-inner { grid-template-columns: 1fr; }
   .about-right { display: none; }
@@ -1975,6 +1993,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 
 @media (max-width: 640px) {
   .hero-right { display: none; }
+  .hero-inner { padding-top: 7rem; }
   .hero-headline { font-size: clamp(3.2rem, 12vw, 5.5rem); }
 
   .ribbon-inner { flex-wrap: wrap; gap: 2.5rem; justify-content: center; }
@@ -1992,6 +2011,8 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 
   .footer-info { grid-template-columns: 1fr; gap: 2rem; }
   .footer-cta-text { font-size: clamp(2rem, 9vw, 3.5rem); }
+  .footer { padding-top: 3rem; }
+  .footer-cta-row { padding-top: 0; }
   .footer-bottom { flex-direction: column; gap: 1.2rem; text-align: center; }
   .footer-nav { flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
 
@@ -2243,7 +2264,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   }
   .services-tbl td {
     display: block;
-    padding: 0.5rem 0 !important;
+    padding: 1.2rem 0 !important;
     width: 100% !important;
     text-align: left !important;
     border: none;
@@ -2251,13 +2272,15 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   .services-tbl td:first-child {
     padding-left: 0 !important;
     width: 100% !important;
+    position: relative;
   }
   .services-tbl td:first-child::before {
     left: 0;
-    transform: translateY(-50%);
+    top: 0.9rem;
+    transform: none;
   }
   .services-tbl tr:hover td:first-child::before {
-    transform: translateY(-50%) translateX(0);
+    transform: none;
   }
   .services-tbl tr:hover td:first-child {
     padding-left: 0 !important;
@@ -2538,6 +2561,11 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
     display: none;
   }
 
+}
+
+/* ===== SHORT SCREENS ===== */
+@media (max-height: 700px) {
+  .hero-inner { padding-top: 8rem; }
 }
 
 /* ===== ACCESSIBILITY: FOCUS STATES ===== */
