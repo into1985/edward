@@ -817,6 +817,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeBookingModal();
   });
 
+  // Footer CTA divider line hover animation
+  document.querySelectorAll('.footer-cta-link').forEach(function(link) {
+    var fill = link.parentElement.querySelector('.footer-cta-divider-fill');
+    if (!fill) return;
+    link.addEventListener('mouseenter', function() { fill.style.width = '100%'; });
+    link.addEventListener('mouseleave', function() { fill.style.width = '0%'; });
+  });
+
   // Intercept all "Broneeri" buttons that link to kontakt.html
   document.querySelectorAll('a.nav-cta, a.footer-cta-link, a.btn[href="kontakt.html"]').forEach(function(link) {
     link.addEventListener('click', function(e) {

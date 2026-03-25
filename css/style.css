@@ -360,11 +360,11 @@ ul, ol { list-style: none; }
     radial-gradient(ellipse at 38% 32%, rgba(200, 168, 148, 0.4) 0%, transparent 50%),
     linear-gradient(168deg, #C4B8B0 0%, #A89888 38%, #908480 65%, #787070 100%);
 }
-.photo-gallery-1 { background-image: url(../gallery/Work-1.png); background-size: 100%; background-position: center top; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.photo-gallery-2 { background-image: url(../gallery/Work-2.png); background-size: 100%; background-position: center top; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.photo-gallery-3 { background-image: url(../gallery/Work-3.png); background-size: 100%; background-position: center top; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.photo-gallery-4 { background-image: url(../gallery/Work-4.png); background-size: 100%; background-position: center top; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.photo-gallery-5 { background-image: url(../gallery/Work-5.png); background-size: 100%; background-position: center top; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.photo-gallery-1 { background-image: url(../gallery/Work-1.png); background-size: cover; background-repeat: no-repeat; background-position: center; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.photo-gallery-2 { background-image: url(../gallery/Work-2.png); background-size: cover; background-repeat: no-repeat; background-position: center; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.photo-gallery-3 { background-image: url(../gallery/Work-3.png); background-size: cover; background-repeat: no-repeat; background-position: center; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.photo-gallery-4 { background-image: url(../gallery/Work-4.png); background-size: cover; background-repeat: no-repeat; background-position: center; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.photo-gallery-5 { background-image: url(../gallery/Work-5.png); background-size: cover; background-repeat: no-repeat; background-position: center; transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .photo-gallery-6 { background: linear-gradient(155deg, #D4C0B4 0%, #C0A898 38%, #A89080 65%, #907870 100%); }
 .photo-gallery-7 { background: linear-gradient(148deg, #D0C8B8 0%, #BCB0A0 38%, #A49888 65%, #8C8478 100%); }
 .photo-gallery-8 { background: linear-gradient(170deg, #D8C8B0 0%, #C4B090 38%, #AAA078 65%, #90887A 100%); }
@@ -409,6 +409,13 @@ ul, ol { list-style: none; }
   position: relative;
   z-index: 2;
 }
+@media (min-width: 1024px) {
+  .hero-left {
+    max-height: calc(78svh - 7rem);
+    overflow: hidden;
+  }
+}
+
 .hero-label {
   font-size: 0.68rem;
   font-weight: 500;
@@ -587,7 +594,7 @@ ul, ol { list-style: none; }
 }
 .section-header {
   display: flex;
-  align-items: flex-end;
+  align-items: last baseline;
   justify-content: space-between;
   margin-bottom: 4.5rem;
   gap: 2rem;
@@ -879,9 +886,9 @@ ul, ol { list-style: none; }
 .gallery-strip-header {
   padding: 0 var(--gutter);
   max-width: var(--container);
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 4.5rem;
   display: flex;
-  align-items: flex-end;
+  align-items: last baseline;
   justify-content: space-between;
 }
 .gallery-strip-title {
@@ -956,7 +963,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   font-style: italic;
   line-height: 1.32;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 .quote-author {
   font-size: 0.68rem;
@@ -1114,19 +1121,33 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 /* — Suur editorial CTA ülaosas — */
 .footer-cta-row {
   padding-top: 3rem;
-  padding-bottom: 3rem;
   margin-bottom: 3.5rem;
-  border-bottom: 1px solid rgba(253,250,246,0.08);
+}
+.footer-cta-divider {
+  position: relative;
+  overflow: hidden;
+  height: 1px;
+  background: rgba(253, 250, 246, 0.08);
+}
+.footer-cta-divider-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: #7b514d;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-cta-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  padding-bottom: 3rem;
 }
 .footer-cta-text {
   font-family: var(--font-display);
-  font-size: 7.5rem;
+  font-size: 5.5rem;
   font-weight: 300;
   color: var(--warm-white);
   line-height: 1;
@@ -1139,14 +1160,25 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  padding-right: clamp(1rem, 2.5vw, 2rem);
+  padding-right: 2rem;
   transition: transform 0.5s var(--ease-out);
 }
 .footer-cta-arrow svg,
 .footer-cta-arrow img {
-  width: clamp(2.2rem, 4.5vw, 4.5rem);
+  width: 4.5rem;
   height: auto;
   transition: transform 0.5s var(--ease-out);
+}
+@media (max-width: 1023px) {
+  .footer-cta-text { font-size: 3.5rem; }
+  .footer-cta-arrow { padding-right: 1.5rem; }
+  .footer-cta-arrow svg, .footer-cta-arrow img { width: 3rem; }
+  .footer-bottom { flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem 3rem; }
+  .quote-inner { max-width: 30rem; }
+}
+@media (max-width: 767px) {
+  .footer-cta-arrow { padding-right: 1rem; }
+  .footer-cta-arrow svg, .footer-cta-arrow img { width: 2.2rem; }
 }
 .footer-cta-link:hover .footer-cta-arrow { transform: translateX(0.875rem); }
 
@@ -1301,15 +1333,26 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
 }
 .services-tbl tr:first-child { border-top: 1px solid var(--border); }
 .services-tbl tr:hover { background-size: 100% calc(100% + 0.125rem); }
-/* Kategooriate erinevad hover-värvid */
-.services-category:nth-child(1) .services-tbl tr {
-  background-image: linear-gradient(to right, rgba(110,125,140,0.13) 0%, rgba(110,125,140,0.13) 100%);
+/* Kategooriate erinevad hover-värvid — ainult desktop */
+@media (min-width: 1024px) {
+  .services-category:nth-child(1) .services-tbl tr {
+    background-image: linear-gradient(to right, rgba(110,125,140,0.13) 0%, rgba(110,125,140,0.13) 100%);
+  }
+  .services-category:nth-child(2) .services-tbl tr {
+    background-image: linear-gradient(to right, var(--terracotta-pale) 0%, var(--terracotta-pale) 100%);
+  }
+  .services-category:nth-child(3) .services-tbl tr {
+    background-image: linear-gradient(to right, rgba(165,175,130,0.18) 0%, rgba(165,175,130,0.18) 100%);
+  }
+
+  /* Avalehe teenuste kategooriate hover-värvid */
+  .services-list .service-row:nth-child(1)::before { background: var(--terracotta-pale); }
+  .services-list .service-row:nth-child(2)::before { background: rgba(110, 125, 140, 0.13); }
+  .services-list .service-row:nth-child(3)::before { background: rgba(165, 175, 130, 0.18); }
+  .services-list .service-row:nth-child(4)::before { background: #F5ECD7; }
 }
-.services-category:nth-child(2) .services-tbl tr {
-  background-image: linear-gradient(to right, var(--terracotta-pale) 0%, var(--terracotta-pale) 100%);
-}
-.services-category:nth-child(3) .services-tbl tr {
-  background-image: linear-gradient(to right, rgba(165,175,130,0.18) 0%, rgba(165,175,130,0.18) 100%);
+@media (max-width: 1023px) {
+  .services-tbl tr:hover { background-size: 0% !important; }
 }
 .services-tbl td { padding: 1.8rem 2.5rem; vertical-align: middle; transition: padding-left 0.35s cubic-bezier(0.16,1,0.3,1); }
 .services-tbl td:first-child {
