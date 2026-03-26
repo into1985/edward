@@ -227,20 +227,23 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ─────────────────────────────────────────────
      1. MAGNEETILISED NUPUD
      ───────────────────────────────────────────── */
-  document.querySelectorAll('.btn-dark, .btn-outline, .nav-cta').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r = btn.getBoundingClientRect();
-      gsap.to(btn, {
-        x: (e.clientX - r.left - r.width  / 2) * 0.28,
-        y: (e.clientY - r.top  - r.height / 2) * 0.28,
-        duration: 0.4,
-        ease: 'power2.out'
+  if (window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.btn-dark, .btn-outline, .nav-cta').forEach(btn => {
+      if (btn.closest('.mobile-menu')) return;
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        gsap.to(btn, {
+          x: (e.clientX - r.left - r.width  / 2) * 0.28,
+          y: (e.clientY - r.top  - r.height / 2) * 0.28,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+      });
+      btn.addEventListener('mouseleave', () => {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
       });
     });
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
-    });
-  });
+  }
 
   const aboutBadge = document.querySelector('.about-badge');
   if (aboutBadge) {
@@ -403,7 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
      ───────────────────────────────────────────── */
   const featPhoto = document.querySelector('.service-feat-photo');
   if (featPhoto) {
-    gsap.fromTo(featPhoto,
+    const featOverlay = document.querySelector('.service-feat-overlay');
+    gsap.fromTo([featPhoto, featOverlay],
       { clipPath: 'inset(100% 0 0 0)' },
       {
         clipPath: 'inset(0% 0 0 0)',
@@ -826,7 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Intercept all "Broneeri" buttons that link to kontakt.html
-  document.querySelectorAll('a.nav-cta, a.footer-cta-link, a.btn[href="kontakt.html"]').forEach(function(link) {
+  document.querySelectorAll('a.nav-cta, a.footer-cta-link, a.btn[href="kontakt.html"], a.svc-book').forEach(function(link) {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       openBookingModal();
