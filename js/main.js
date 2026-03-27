@@ -504,14 +504,14 @@ document.addEventListener('DOMContentLoaded', () => {
      ───────────────────────────────────────────── */
   const pageTitle = document.querySelector('.page-hero-title');
   if (pageTitle) {
-    gsap.from(pageTitle, {
-      yPercent: 28, opacity: 0,
-      duration: 1.2, ease: 'expo.out', delay: 0.2
-    });
-    gsap.from('.page-hero-sub', {
-      opacity: 0, y: 22,
-      duration: 0.85, ease: 'power3.out', delay: 0.4
-    });
+    gsap.fromTo(pageTitle,
+      { yPercent: 28, opacity: 0 },
+      { yPercent: 0, opacity: 1, duration: 1.2, ease: 'expo.out', delay: 0.2 }
+    );
+    gsap.fromTo('.page-hero-sub',
+      { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out', delay: 0.4 }
+    );
   }
 
   /* ─────────────────────────────────────────────
