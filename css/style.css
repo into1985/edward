@@ -33,13 +33,19 @@
 
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 1rem; scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--cream-warm) var(--cream); }
+html { font-size: 1rem; scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: #C4946A #EDE8DF; }
 
 /* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 0.3125rem; }
-::-webkit-scrollbar-track { background: var(--cream); }
-::-webkit-scrollbar-thumb { background: var(--cream-warm); border-radius: 0.625rem; }
-::-webkit-scrollbar-thumb:hover { background: var(--terracotta); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #EDE8DF; }
+::-webkit-scrollbar-thumb { background: #C4946A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #A67850; }
+
+/* ===== TEXT SELECTION ===== */
+::selection { background-color: #C4946A; color: #ffffff; }
+::-moz-selection { background-color: #C4946A; color: #ffffff; }
+
+
 body {
   font-family: var(--font-body);
   background: var(--cream);
@@ -1515,7 +1521,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   background-position: center top;
   transition: background-size 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.team-profile:hover .team-profile-photo .photo {
+.team-profile-photo:hover .photo {
   background-size: 110%;
 }
 .team-profile-info {
@@ -2101,6 +2107,10 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
   .footer-info { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .footer-info > div:nth-child(3) { grid-column: 2; }
+}
+
+@media (min-width: 641px) {
+  .team-profile:not(:last-child) { margin-bottom: 2rem; }
 }
 
 @media (max-width: 640px) {
