@@ -1305,6 +1305,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   line-height: 0.92;
   letter-spacing: -0.025em;
   color: var(--text-primary);
+  opacity: 0;
 }
 .page-hero-sub {
   font-size: 1rem;
@@ -1312,6 +1313,7 @@ padding: 0 clamp(var(--gutter), calc((100% - var(--container)) / 2), 5rem);
   color: var(--text-secondary);
   max-width: 50ch;
   margin-top: 2.5rem;
+  opacity: 0;
 }
 
 /* ===== SERVICES PAGE ===== */
