@@ -285,20 +285,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroLines.length) {
     const tl = gsap.timeline({ delay: 0.12 });
 
-    tl.from(heroLines, {
-        yPercent: 110,
-        duration: 1.15,
-        stagger: 0.13,
-        ease: 'expo.out'
-      })
-      .from('.hero-label', {
-        opacity: 0, y: 14,
-        duration: 0.85, ease: 'power3.out'
-      }, 0.18)
-      .from('.hero-actions .btn', {
-        opacity: 0, y: 18,
-        duration: 0.85, ease: 'power3.out'
-      }, 0.62)
+    tl.fromTo(heroLines,
+        { yPercent: 110 },
+        { yPercent: 0, duration: 1.15, stagger: 0.13, ease: 'expo.out' }
+      )
+      .fromTo('.hero-label',
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+        0.18
+      )
+      .fromTo('.hero-actions .btn',
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+        0.62
+      )
       // Foto: kardin alt üles + sisemine pilt suuremalt normaalsuurusele
       .fromTo('.hero-photo-wrap',
         { clipPath: 'inset(0 0 100% 0)' },
@@ -309,10 +309,11 @@ document.addEventListener('DOMContentLoaded', () => {
         { scale: 1.13, duration: 1.9, ease: 'power3.out' },
         0.35
       )
-      .from('.hero-watermark', {
-        opacity: 0, y: 35,
-        duration: 1.2, ease: 'power3.out'
-      }, 0.75);
+      .fromTo('.hero-watermark',
+        { opacity: 0, y: 35 },
+        { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' },
+        0.75
+      );
   }
 
   /* ─────────────────────────────────────────────

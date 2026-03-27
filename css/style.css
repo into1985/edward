@@ -383,7 +383,10 @@ ul, ol { list-style: none; }
   overflow: hidden;
   padding-bottom: 0.22em; /* space for descenders (g, j jne.) */
 }
-.line-wrap .line { display: block; }
+.line-wrap .line { display: block; transform: translateY(110%); }
+.hero-label { opacity: 0; }
+.hero-actions .btn { opacity: 0; }
+.hero-watermark { opacity: 0; }
 
 /* ===== HERO ===== */
 .hero {
